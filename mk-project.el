@@ -782,6 +782,27 @@ selection of the file. See also: `project-index',
    (ido-completing-read (mk-proj-prompt "Buffer: ") (mk-proj-buffer-names))))
 
 ;; ---------------------------------------------------------------------
+;; Keys
+;; ---------------------------------------------------------------------
+
+
+(defvar mk-proj-keymap
+  (let ((map (make-sparse-keymap)))
+    (define-key map "b" 'project-switch-to-buffer)
+    (define-key map "c" 'project-compile)
+    (define-key map "d" 'project-dired)
+    (define-key map "f" 'project-find-file-ido)
+    (define-key map "g" 'project-grep)
+    (define-key map "i" 'project-index)
+    (define-key map "l" 'project-load)
+    (define-key map "o" 'project-multi-occur)
+    (define-key map "s" 'project-status)
+    (define-key map "t" 'project-tags)
+    (define-key map "u" 'project-unload)
+    map)
+  "Keymap for mk-project.")
+
+;; ---------------------------------------------------------------------
 ;; Menus
 ;; ---------------------------------------------------------------------
 
