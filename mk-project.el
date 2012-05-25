@@ -824,7 +824,7 @@ project is not loaded."
   (define-key-after
     global-map
     [menu-bar mkproject]
-    (cons "mk-project" (make-sparse-keymap))
+    (cons "Project" (make-sparse-keymap))
     'tools)
 
   ;; define the menu items in reverse order
