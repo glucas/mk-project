@@ -384,7 +384,8 @@ load time. See also `project-menu-remove'."
 (defun mk-proj-buffer-name (buf)
   "Return buffer's name based on filename or dired's location"
   (let ((file-name (or (buffer-file-name buf)
-                       (with-current-buffer buf list-buffers-directory))))
+                       (with-current-buffer buf
+                         (if (eq major-mode 'dired-mode) list-buffers-directory nil)))))
     (if file-name
         (expand-file-name file-name)
       nil)))
@@ -775,6 +776,7 @@ selection of the file. See also: `project-index',
                regex))
 
 ;; TODO For consistency this should work without ido as well.
+;; TODO Include ack/grep/etc output buffers for project directory?
 (defun project-switch-to-buffer ()
   "Switch to a project buffer."
   (interactive)
