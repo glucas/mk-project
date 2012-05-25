@@ -267,6 +267,9 @@ load time. See also `project-menu-remove'."
   (delq nil
         (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
 
+(defun mk-proj-prompt (string)
+  (format "[%s] %s" mk-proj-name string))
+
 ;; ---------------------------------------------------------------------
 ;; Project Configuration
 ;; ---------------------------------------------------------------------
@@ -755,7 +758,7 @@ selection of the file. See also: `project-index',
   (unless (get-buffer mk-proj-fib-name)
     (message "Please use project-index to create the index before running project-find-file-ido")
     (return-from "project-find-file-ido" nil))
-  (let ((file (ido-completing-read "Find file in project matching (ido): "
+  (let ((file (ido-completing-read (mk-proj-prompt "Find file: ")
                                    (mk-proj-fib-matches nil))))
     (when file
       (find-file (concat (file-name-as-directory mk-proj-basedir) file)))))
