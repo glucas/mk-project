@@ -404,6 +404,10 @@ load time. See also `project-menu-remove'."
       (when (mk-proj-buffer-p b) (push b buffers)))
     buffers))
 
+(defun mk-proj-buffer-names ()
+  "Get a list of buffer names for this project."
+  (mapcar 'buffer-name (mk-proj-buffers)))
+
 (defun project-status ()
   "View project's variables."
   (interactive)
@@ -769,6 +773,13 @@ selection of the file. See also: `project-index',
   (multi-occur (mk-proj-filter (lambda (b) (if (buffer-file-name b) b nil))
                                (mk-proj-buffers))
                regex))
+
+;; TODO For consistency this should work without ido as well.
+(defun project-switch-to-buffer ()
+  "Switch to a project buffer."
+  (interactive)
+  (switch-to-buffer
+   (ido-completing-read (mk-proj-prompt "Buffer: ") (mk-proj-buffer-names))))
 
 ;; ---------------------------------------------------------------------
 ;; Menus
