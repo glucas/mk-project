@@ -384,8 +384,7 @@ load time. See also `project-menu-remove'."
 (defun mk-proj-buffer-name (buf)
   "Return buffer's name based on filename or dired's location"
   (let ((file-name (or (buffer-file-name buf)
-                       (with-current-buffer buf
-                         (if (eq major-mode 'dired-mode) list-buffers-directory nil)))))
+                       (with-current-buffer buf dired-directory))))
     (if file-name
         (expand-file-name file-name)
       nil)))
