@@ -559,7 +559,7 @@ C-u prefix, start from the current directory."
       (setq find-cmd (concat find-cmd " -not -path " (mk-proj-get-vcs-path))))
     (let* ((whole-cmd (concat (or (mk-proj-find-cmd-val 'grep)
                                   (concat find-cmd " -print0"))
-                              " | xargs -0 -e " grep-cmd))
+                              " | xargs -0 " grep-cmd))
            (confirmed-cmd (read-string "Grep command: " whole-cmd nil whole-cmd)))
       (message "project-grep cmd: \"%s\"" confirmed-cmd)
       (grep-find confirmed-cmd))))
